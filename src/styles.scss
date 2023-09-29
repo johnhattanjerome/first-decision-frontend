@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+@import "ngx-toastr/toastr";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ng-touched.ng-invalid-required {
+  border-color: red;
+}
+
+.ng-dirty.ng-invalid {
+  border-color: red;
+}
+
+.ng-untouched.ng-invalid {
+  border-color: #ccc;
+}
+.ng-submitted input.ng-invalid {
+  border-color: red;
+}
+
+@media screen and (min-width: 500px) {
+  .toast-container {
+    .ngx-toastr.toast-error {
+      width: 500px;
+    }
+  }
+}

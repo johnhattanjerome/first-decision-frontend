@@ -1,0 +1,105 @@
+<div class="fixed inset-0 flex items-center justify-center px-4">
+  <form
+    [formGroup]="form"
+    class="flex flex-col w-full max-w-md gap-y-2"
+    (submit)="sendUser(form.getRawValue())"
+  >
+    <h3 class="self-center mb-7 text-3xl">Cadastro de Usuário</h3>
+    <div class="flex flex-col gap-y-2">
+      <label class="flex flex-row" for="name">
+        Nome
+        <p class="text-red-600">*</p>
+      </label>
+      <input
+        class="h-10 border border-gray-500 rounded-md p-[12px]"
+        type="text"
+        name="name"
+        formControlName="name"
+        required
+      />
+    </div>
+    <div class="flex flex-col gap-y-2">
+      <label class="flex flex-row" for="email">
+        E-mail
+        <p class="text-red-600">*</p>
+      </label>
+      <input
+        class="h-10 border border-gray-500 rounded-md p-[12px]"
+        type="email"
+        name="email"
+        formControlName="email"
+        required
+      />
+    </div>
+    <div class="flex flex-col gap-y-2">
+      <label class="flex flex-row" for="senha">
+        Senha
+        <p class="text-red-600">*</p>
+      </label>
+      <input
+        class="h-10 border border-gray-500 rounded-md p-[12px]"
+        type="password"
+        name="password"
+        formControlName="password"
+        required
+      />
+    </div>
+    <div class="flex flex-col gap-y-2">
+      <label class="flex flex-row" for="confirmarSenha">
+        Confirmar senha
+        <p class="text-red-600">*</p>
+      </label>
+      <input
+        class="h-10 border border-gray-500 rounded-md p-[12px]"
+        type="password"
+        name="confirmPassword"
+        formControlName="confirmPassword"
+        required
+      />
+    </div>
+    <div class="flex flex-col text-sm">
+      <div class="flex flex-row text-xs my-3">
+        (
+        <p class="text-red-600">*</p>
+        ) Obrigatório
+      </div>
+
+      <div
+        *ngIf="
+          (form.get('name')?.hasError('minlength') ||
+            form.get('name')?.hasError('maxlength')) &&
+          form.get('name')?.touched
+        "
+      >
+        O nome deve possuir entre 3 e 50 caracteres.
+      </div>
+      <div
+        *ngIf="
+          form.get('email')?.hasError('email') && form.get('email')?.touched
+        "
+      >
+        O e-mail possui um formato inválido.
+      </div>
+      <div
+        *ngIf="
+          (form.get('password')?.hasError('minlength') ||
+            form.get('password')?.hasError('maxlength')) &&
+          form.get('password')?.touched
+        "
+      >
+        A senha deve possuir entre 6 e 20 caracteres.
+      </div>
+      <div *ngIf="form?.hasError('matching') && form.get('password')?.touched">
+        As senhas devem ser iguais.
+      </div>
+    </div>
+    <button
+      class="bg-indigo-500 border-black text-white h-10 rounded-md z-20 cursor-pointer disabled:bg-indigo-100 disabled:text-indigo-300 disabled:cursor-default hover:bg-indigo-900 duration-300 ease-in-out"
+      [disabled]="!form.valid"
+      type="submit"
+    >
+      Confirmar
+    </button>
+  </form>
+</div>
+<app-modal [errorList]="errorList$ | async"></app-modal>
