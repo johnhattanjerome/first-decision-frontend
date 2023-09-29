@@ -26,14 +26,20 @@ export class HttpStatusInterceptor implements HttpInterceptor {
         }
       }),
       catchError((error) => {
-        if (error.message && error.status !== 500 && error.status !== 0) {
-          this.toastr.error(error.message, error.status);
-        } else {
+        if (error.message && error.status === 400 && error.error.length) {
+          this.toastr.error(
+            'Não foi possível inserir o registro, verifique seu cadastro.',
+            error.status
+          );
+        } else if (error.status === 500 || error.status === 0) {
           this.toastr.error(
             'Não foi possível realizar essa operação. Contate o suporte.',
             error.status
           );
+        } else if (error.message) {
+          this.toastr.error(error.message, error.status);
         }
+
         return throwError(error);
       })
     );

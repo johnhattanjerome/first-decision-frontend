@@ -29,9 +29,6 @@ export class UserRegistrationComponent implements OnInit {
         first(),
         tap(() => {
           this.form.reset();
-          Object.keys(this.form.controls).forEach((key) => {
-            this.form.get(key)?.setErrors(null);
-          });
         })
       )
       .subscribe();

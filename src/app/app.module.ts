@@ -17,7 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      timeOut:22000,
+      timeOut:3000,
     })
   ],
   providers: [HttpStatusInterceptorProvider],

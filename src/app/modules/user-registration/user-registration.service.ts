@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, throwError } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
+import { environment } from '../../../environments/environment.development';
 import { ModalService } from '../../shared/components/modal/modal.service';
 
 @Injectable({

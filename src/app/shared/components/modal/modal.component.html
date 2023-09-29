@@ -25,15 +25,18 @@
             d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
           />
         </svg>
-        <span class="sr-only">Close modal</span>
+        <span class="sr-only">Fechar</span>
       </button>
-      <div class="p-6 text-center mt-8">
-        <h3
-          *ngFor="let error of errorList"
-          class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"
-        >
-          {{ error }}
-        </h3>
+      <h3 class="p-3 text-center text-lg font-normal text-gray-400 dark:text-gray-300">Erros</h3>
+      <div class="px-6 py-2 text-center mt-2">
+        <ul>
+          <li
+            *ngFor="let error of errorList"
+            class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400"
+          >
+            {{ error }}
+          </li>
+        </ul>
         <button
           data-modal-hide="popup-modal"
           type="button"
